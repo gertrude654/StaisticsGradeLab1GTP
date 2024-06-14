@@ -8,20 +8,30 @@ public class StatisticsOfGrade {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+
+        //input all grades on one line
         System.out.println("Enter grades of students on one line : ");
+        //reads whole line include spaces and split it into array based on spaces
         String [] grades = sc.nextLine().split(" ");
+
+        //declare scores with length of grades
         int [] scores = new int[grades.length];
 
+        //assign grades values to score index
         for(int i = 0; i<scores.length; i++){
             int grade = Integer.parseInt(grades[i]);
+
+            //valid user input and assign index to zero for invalid input
             if(grade<0 || grade>100){
                 System.out.println("invalid input, index assigned to zero");
             } else {
                 scores[i] = Integer.parseInt(grades[i]);
             }
         }
+        //print score array
         System.out.println(Arrays.toString(scores));
         System.out.print(" Number of students: " + scores.length);
+        System.out.println();
         System.out.println();
 
         System.out.println("Values: ");
@@ -42,6 +52,7 @@ public class StatisticsOfGrade {
 
         int [] stats = new int[5];
 
+        //increment value of stat according to condition
         for(int grade:scores){
             if(grade <= 20) stats[0]++;
             else if(grade <= 40) stats[1]++;
@@ -60,10 +71,10 @@ public class StatisticsOfGrade {
         int maxHeight = findMaximum(stats);
 
          //Generate the graph
-        //for loop for rows
+        //for loop for rows decrement according to maxHeight
         for (int i = maxHeight; i > 0 ; i--) {
             String line = "  " + i + "  >  ";
-            //for loop for columns
+            //for loop for columns increment according to stats length ex: 3
             for (int j = 0; j < stats.length; j++) {
                 if (stats[j] >= i) {
                     line += "#######";
